@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.CSS">
+    <title>Calculadora de Conversão de Unidades CSS</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Calculadora de Conversão de Unidades CSS</h1>
+        </header>
+
+        <section>
+
+            <div class="note">
+                <p>Qualquer duvida em relação ao calculo ou a formula você pode ler as exemplificações abaixo da calculadora de conversão <br><strong>lembrando que o monitor só entende pixels</strong></p>
+            </div>
+
+            <div class="calculator">
+                <h3>Escolha a unidade e insira o valor</h3>
+                <label for="unit">Selecione a unidade:</label>
+                <select id="unit">
+                    <option value="px">px (Pixels)</option>
+                    <option value="pt">pt (Pontos)</option>
+                    <option value="cm">cm (Centímetros)</option>
+                    <option value="mm">mm (Milímetros)</option>
+                    <option value="in">in (Polegadas)</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="vw">vw (Viewport Width)</option>
+                    <option value="vh">vh (Viewport Height)</option>
+                    <option value="ch">ch (Caractere "0")</option>
+                    <option value="fr">fr (Fraction)</option>
+                </select>
+
+                <label for="value">Insira o valor:</label>
+                <input type="number" id="inserted_value" placeholder="Digite o valor a ser convertido" />
+
+                <div class="reference_values" hidden>
+                    <label for="value_reference1"></label>
+                    <input type="number" id="value_reference1">
+                    
+                    <label for="value_reference12"></label>
+                    <input type="number" id="value_reference2">     
+                </div>
+
+                <button onclick="convert()">Converter</button>
+
+                <div class="result" id="conversor_result"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Fórmulas de Conversão de Unidades CSS</h2>
+            <p>Entenda como converter entre as diferentes unidades de medida em CSS.</p>
+
+            <h3>Unidades Absolutas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unidade</th>
+                        <th>Fórmula de Conversão</th>
+                        <th>Exemplo Explicado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>px (pixels)</td>
+                        <td>1px = 1px</td>
+                        <td>Os pixels são a medida básica de exibição na tela. Se você definir algo em 10px, ele sempre
+                            terá 10 pixels, independentemente do tamanho da tela ou da fonte.</td>
+                    </tr>
+                    <tr>
+                        <td>pt (pontos)</td>
+                        <td><code>px = pt × 4/3</code> (1pt = 1/72 polegada, 1px = 1/96 polegada)</td>
+                        <td>Os pontos são comumente usados para impressão. 1 ponto (pt) é igual a 4/3 pixels, já que as
+                            impressoras geralmente usam uma resolução de 72 DPI (pontos por polegada) enquanto a tela
+                            usa 96 DPI.</td>
+                    </tr>
+                    <tr>
+                        <td>cm (centímetros)</td>
+                        <td><code>px = cm × 37.795</code> (1cm = 37.795px)</td>
+                        <td>Centímetros são uma medida física. No CSS, 1 centímetro é igual a aproximadamente 37.795
+                            pixels. Isso pode variar de acordo com a resolução da tela, mas essa é a medida padrão usada
+                            no CSS.</td>
+                    </tr>
+                    <tr>
+                        <td>mm (milímetros)</td>
+                        <td><code>px = mm × 3.7795</code> (1mm = 3.7795px)</td>
+                        <td>Milímetros são mais precisos que os centímetros. No CSS, 1 milímetro equivale a
+                            aproximadamente 3.7795 pixels.</td>
+                    </tr>
+                    <tr>
+                        <td>in (polegadas)</td>
+                        <td><code>px = in × 96</code> (1 polegada = 96px)</td>
+                        <td>Uma polegada (in) é uma unidade de medida física. No CSS, 1 polegada é igual a 96 pixels.
+                            Isso é útil quando você quer definir tamanhos baseados em medidas físicas.</td>
+                    </tr>
+                    <tr>
+                        <td>pc (picas)</td>
+                        <td><code>px = pc × 16.6667</code> (1 pica = 16.6667px)</td>
+                        <td>Picas são usadas frequentemente em design gráfico e tipografia. No CSS, 1 pica (pc) é igual
+                            a aproximadamente 16.67 pixels.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Unidades Relativas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unidade</th>
+                        <th>Fórmula de Conversão</th>
+                        <th>Exemplo Explicado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>em</td>
+                        <td><code>px = em × tamanho da fonte do elemento pai</code></td>
+                        <td>A unidade "em" é baseada no tamanho da fonte do elemento pai. Se o tamanho da fonte do
+                            elemento pai for 16px e você definir o valor como 2em, o tamanho final será 32px (2 × 16px).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ex</td>
+                        <td><code>px = ex × tamanho da fonte em px × 0.5</code></td>
+                        <td>A unidade "ex" é baseada na altura da letra "x" minúscula da fonte. Ela varia dependendo da
+                            fonte, mas geralmente é metade da altura da fonte. Se a altura da letra "x" for 8px, 1ex
+                            será aproximadamente 4px.</td>
+                    </tr>
+                    <tr>
+                        <td>% (percentagem)</td>
+                        <td><code>px = % × (tamanho do elemento pai / 100)</code></td>
+                        <td>Percentagens são comumente usadas para definir tamanhos relativos. Por exemplo, se a largura
+                            do elemento pai for 200px e você definir a largura de um elemento como 50%, esse elemento
+                            terá 100px (50% de 200px).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Unidades de Viewport</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unidade</th>
+                        <th>Fórmula de Conversão</th>
+                        <th>Exemplo Explicado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>vw (viewport width)</td>
+                        <td><code>px = vw × (largura da viewport / 100)</code></td>
+                        <td>A unidade "vw" é baseada na largura da janela do navegador. 1vw é igual a 1% da largura da
+                            tela. Por exemplo, se a largura da tela for 1000px, 1vw será 10px.</td>
+                    </tr>
+                    <tr>
+                        <td>vh (viewport height)</td>
+                        <td><code>px = vh × (altura da viewport / 100)</code></td>
+                        <td>Da mesma forma que "vw", a unidade "vh" é baseada na altura da janela do navegador. 1vh é
+                            igual a 1% da altura da tela. Se a altura da tela for 800px, 1vh será 8px.</td>
+                    </tr>
+                    <tr>
+                        <td>vmin</td>
+                        <td><code>px = vmin × (menor valor entre largura e altura da viewport / 100)</code></td>
+                        <td>A unidade "vmin" é baseada no menor valor entre a largura e a altura da janela do navegador.
+                            Se a largura for 1000px e a altura for 800px, 1vmin será 8px.</td>
+                    </tr>
+                    <tr>
+                        <td>vmax</td>
+                        <td><code>px = vmax × (maior valor entre largura e altura da viewport / 100)</code></td>
+                        <td>Já a unidade "vmax" é baseada no maior valor entre a largura e a altura da janela do
+                            navegador. Se a largura for 1000px e a altura for 800px, 1vmax será 10px.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Unidades Baseadas no Elemento Raiz (root)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unidade</th>
+                        <th>Fórmula de Conversão</th>
+                        <th>Exemplo Explicado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>rem</td>
+                        <td><code>px = rem × tamanho da fonte do elemento raiz</code></td>
+                        <td>A unidade "rem" é baseada no tamanho da fonte do elemento raiz, que geralmente é a tag `
+                            <html>`. Se a fonte do elemento raiz for 16px, 1rem será 16px.</td>
+                    </tr>
+                    <tr>
+                        <td>ch (caracter "0")</td>
+                        <td><code>px = ch × largura do caractere "0" em px</code></td>
+                        <td>A unidade "ch" é baseada na largura do caractere "0" na fonte atual. Por exemplo, se o "0"
+                            tiver 8px de largura, 1ch será igual a 8px.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <strong>Nota:</strong> Para realizar conversões exatas, é importante entender que algumas unidades
+                dependem de outros fatores, como o tamanho da fonte ou o tamanho da janela do navegador. As fórmulas
+                fornecem a base para entender como as unidades se relacionam entre si.
+            </div>
+        </section>
+    </main>
+
+    <script src="script/script.js"></script>
+</body>
+
+</html>
