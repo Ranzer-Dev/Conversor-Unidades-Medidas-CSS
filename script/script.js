@@ -38,6 +38,66 @@ unit.onchange = function () {
             label_value2.hidden = true;
             label_value1.innerHTML = "DPI do Monitor (Padrão 96)";
             break;
+        case 5:
+            reference_values.hidden = true;
+            break;
+        case 6:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            label_value1.innerHTML = "Tamanho da fonte do elemento pai";
+            break;
+        case 7:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            label_value1.innerHTML = "Tamanho da fonte do elemento pai";
+            break;
+        case 8:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            label_value1.innerHTML = "Tamanho do elemento pai(width, largura ou height, altura)";
+            break;
+        case 9:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            label_value1.innerHTML = "largura da janela do navegador";
+            break;
+        case 10:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            label_value1.innerHTML = "altura da janela do navegador";
+            break;
+        case 11:
+            reference_values.hidden = false;
+            input2.hidden = false;
+            label_value2.hidden = false;
+            label_value1.innerHTML = "altura da janela do navegador em px";
+            label_value2.innerHTML = "largura da janela do navegador em px";
+            break;
+        case 12:
+            reference_values.hidden = false;
+            input2.hidden = false;
+            label_value2.hidden = false;
+            label_value1.innerHTML = "altura da janela do navegador em px";
+            label_value2.innerHTML = "largura da janela do navegador em px";
+            break;
+        case 13:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            label_value1.innerHTML = "Tamanho da fonte do elemento Raiz (normalmente <Html>)";
+            break;
+        case 14:
+            reference_values.hidden = false;
+            input2.hidden = true;
+            label_value2.hidden = true;
+            input1.hidden = true;
+            label_value1.innerHTML = "esta unidade não tem um valor padrão nem proximo de um padrão leia a formula para entender";
+            break;
     }
 }
 
@@ -55,7 +115,7 @@ function convert() {
             result = inserted_value;
             break;
         case 1:
-            result = inserted_value * reference_values1 / reference_values2;
+            result = (inserted_value * reference_values1 / reference_values2);
             break;
         case 2:
             result = (inserted_value * reference_values1 / cm_to_inch);
@@ -64,6 +124,33 @@ function convert() {
             result = (inserted_value * reference_values1 / mm_to_inch);
             break;
         case 4:
+            result = (inserted_value * reference_values1);
+            break;
+        case 5:
+            result = (inserted_value * 16.6667);
+            break;
+        case 6:
+            result = (inserted_value * reference_values1 * 0.5);
+            break;
+        case 7:
+            result = (inserted_value * reference_values1);
+            break;
+        case 8:
+            result = (inserted_value * (reference_values1 / 100));
+            break;
+        case 9:
+            result = (inserted_value * (reference_values1 / 100));
+            break;
+        case 10:
+            result = (inserted_value * (reference_values1 / 100));
+            break;
+        case 11:
+            result = (inserted_value * (Math.min(reference_values1, reference_values2))/100);
+            break;
+        case 12:
+            result = (inserted_value * (Math.max(reference_values1, reference_values2))/100);
+            break;
+        case 13:
             result = (inserted_value * reference_values1);
             break;
     }
